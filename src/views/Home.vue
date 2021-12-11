@@ -36,7 +36,10 @@ export default class Home extends Vue {
 .home {
   min-height: 100vh;
   background-image: url(background.png);
-  background-size: 120%;
+  background-position: center;
+  background-repeat: no-repeat;
+  // background-size: 100% 100%;
+  // background-size: 120%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -44,12 +47,33 @@ export default class Home extends Vue {
   .login {
     min-height: 270px;
     min-width: 400px;
-    background-color: rgba(256, 256, 256, 0.5);
+    background-color: rgba(0,0,0,0.4);
     display: flex;
+    z-index: 1;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     border-radius: 5px;
+    position: relative;
+    margin-left: 40%;
+    &::before {
+      content: "";
+      display: inline-block;
+      position: absolute;
+      // top: 300px;
+      background-image: url(background.png);
+      // background-position:center;
+      background-position-y: center;
+      background-position-x: 72.5%;
+      background-repeat: no-repeat;
+      // background-color: rgba(0,0,0,0.4);
+      // background-size: 100% 100%;
+      filter:blur(10px) brightness(70%) contrast(90%);
+      min-height: 270px;
+      min-width: 400px;
+      z-index: -1;
+      // border: none;
+    }
     .name,
     .password {
       height: 30px;
@@ -64,6 +88,9 @@ export default class Home extends Vue {
       &::placeholder {
         text-align: start;
         color: rgba(0, 0, 0, 0.7);
+      }
+      &:focus {
+        background-color: rgba(256, 256, 256, 1);
       }
     }
     .login-btn {
@@ -134,8 +161,8 @@ export default class Home extends Vue {
   padding-left: 30px;
   padding-right: 30px;
   font-family: lobster two;
-  color: white;
-  text-shadow: 0 8px 0 #56922b33;
+  color: rgba(256, 256, 256, 0.8);
+  text-shadow: 0 4px 0 #587e3de0;
   font-size: 50px;
   cursor: default;
 }
