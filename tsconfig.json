@@ -33,7 +33,7 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx"
-  ],
+, "src/api/api.interceptors.ts", "src/api/api.config.ts", "src/api/login.api.ts"  ],
   "exclude": [
     "node_modules"
   ]

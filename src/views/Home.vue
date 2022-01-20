@@ -21,14 +21,19 @@
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
-
+import { loginByPwd } from "../api/login.api";
 @Options({})
 export default class Home extends Vue {
-  username?: string = "";
-  password?: string = "";
-  login(): void {
+  username = "";
+  password = "";
+  async login(): Promise<void> {
     console.log("username:", this.username);
     console.log("password:", this.password);
+    const res = await loginByPwd({
+      username: this.username,
+      password: this.password,
+    });
+    console.log(res);
   }
 }
 </script>
@@ -47,7 +52,7 @@ export default class Home extends Vue {
   .login {
     min-height: 270px;
     min-width: 400px;
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0, 0, 0, 0.4);
     display: flex;
     z-index: 1;
     flex-direction: column;
@@ -68,7 +73,7 @@ export default class Home extends Vue {
       background-repeat: no-repeat;
       // background-color: rgba(0,0,0,0.4);
       // background-size: 100% 100%;
-      filter:blur(10px) brightness(70%) contrast(90%);
+      filter: blur(15px) brightness(65%) contrast(90%);
       min-height: 270px;
       min-width: 400px;
       z-index: -1;
@@ -85,12 +90,14 @@ export default class Home extends Vue {
       border-width: 0px;
       outline: none;
       text-align: center;
+      color: white;
       &::placeholder {
         text-align: start;
-        color: rgba(0, 0, 0, 0.7);
+        color: rgba(256, 256, 256, 1);
       }
       &:focus {
-        background-color: rgba(256, 256, 256, 1);
+        // background-color: rgba(256, 256, 256, 1);
+        background-color: rgba(256, 256, 256, 0.5);
       }
     }
     .login-btn {
