@@ -4,16 +4,11 @@ import store from 'store2'
 
 const BASE_URL = NET_CONFIG.BACKEND_URL + ':' + NET_CONFIG.BACKEND_PORT + '/user';
 
-export class loginArgs {
-    username:string;
-    password:string;
-    constructor() {
-        this.username = '';
-        this.password = '';
-    }
-}
 export async function loginByPwd(
-    args = new loginArgs()
+    args:{
+        username:string,
+        password:string
+    }
 ): Promise<any> {
     try {
         const res = await axios({
@@ -26,10 +21,34 @@ export async function loginByPwd(
         // 登陆成功后写入localstorage
         if(res.data&&res.data.res==true){
             store.set('session_token',res.data.sessionToken)
+            store.set('userId',res.data.userId)
         }
         return res;
     } catch (error) {
-        console.error(error)
+        // console.error(error)
     }
 
 }
+
+export async function get_ticket_token(
+    args:{
+        sessionToken:string,
+        url:string|null,
+        userId:number,
+    }
+): Promise<any> {
+    try {
+        const res = await axios({
+            method: 'post',
+            url: BASE_URL + '/get-ticket-token',
+            data: {
+                ...args
+            },
+        })
+        return res;
+    } catch (error) {
+        // console.error(error)
+    }
+
+}
+
