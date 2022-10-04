@@ -24,7 +24,7 @@ export default class Home extends Vue {
       // 获取ticket_token成功
       // 返回原页面
       window.location.href =
-        "http://" + url + "?ticket_token=" + get_ticket_res.data.ticketToken;
+        "https://" + url + "?ticket_token=" + get_ticket_res.data.ticketToken;
     } else {
       // 获取失败，重新回到登陆界面
       this.$router.replace({

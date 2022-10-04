@@ -2,7 +2,9 @@ import axios from 'axios';
 import { NET_CONFIG } from './api.config';
 import store from 'store2'
 
-const BASE_URL = NET_CONFIG.BACKEND_URL + ':' + NET_CONFIG.BACKEND_PORT + '/user';
+// const BASE_URL = NET_CONFIG.BACKEND_URL + ':' + NET_CONFIG.BACKEND_PORT + '/user';
+const BASE_URL = NET_CONFIG.BACKEND_URL + 'user';
+
 
 export async function loginByPwd(
     args:{
